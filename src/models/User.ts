@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 import bcrypt from 'bcrypt';
 
-import { IUser } from '../interfaces/user';
+import { IUser } from '../interfaces/IUser';
 
 const UserSchema: Schema = new Schema({
     registration: {
@@ -36,9 +36,15 @@ const UserSchema: Schema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    accesslevel: {
+        type: Number,
+        default: 1,
+        required: true
     }
 }, { timestamps: true });
 
+// Criptografia
 UserSchema.pre('save', async function(next) {
     if (!this.isModified('password')) { return next() }
 
