@@ -3,6 +3,10 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDatabase from './config/database';
 
+import userRoutes from './routes/userRoutes';
+import categoryRoutes from './routes/categoryRoutes';
+
+
 dotenv.config();
 connectDatabase();
 
@@ -16,6 +20,9 @@ app.use(cors({
 }));
 
 app.use(express.json());
+
+app.use('/api/users', userRoutes);
+app.use('/api/category', categoryRoutes);
 
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);

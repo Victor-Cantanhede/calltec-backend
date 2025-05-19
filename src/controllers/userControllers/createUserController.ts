@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import User from '../../models/User';
 import { nameRule, registrationRule, departmentRule, telRule, emailRule, userNameRule, passwordRule, existingUserData } from '../../services/userService/createUserRules';
-import { removeWhiteSpace } from '../../utils/removeWhiteSpace';
+import { removeAllWhiteSpaces } from '../../utils/removeWhiteSpace';
 import { formatTelString } from '../../utils/formatTelString';
 
 export const createUser = async (req: Request, res: Response): Promise<void> => {
@@ -10,7 +10,7 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
         const { registration, name, department, tel, email, username, password } = req.body;
         
         if (!registration || !name || !department || !tel || !email || !username || !password) {
-            res.status(400).json({ message: 'Todos os campos são obrigatórios' });
+            res.status(400).json({ message: 'Todos os campos são obrigatórios!' });
             return;
         }
         
@@ -26,7 +26,7 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
         ///////////////////////////////////////////////////////////////////////////
         
         try {
-            const existingSameRegistration: boolean = await existingUserData('registration', removeWhiteSpace(registration));
+            const existingSameRegistration: boolean = await existingUserData('registration', removeAllWhiteSpaces(registration));
             
             if (existingSameRegistration) {
                 res.status(400).json({ message: 'Erro: Já existe um usuário com a mesma matrícula!' });
@@ -128,6 +128,6 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
         res.status(201).json({ message: 'Usuário cadastrado com sucesso!' });
 
     } catch (error) {
-        res.status(500).json({ message: 'Erro ao criar usuário', error: (error as Error).message });
+        res.status(500).json({ message: 'Erro ao criar usuário!', error: (error as Error).message });
     }
 };

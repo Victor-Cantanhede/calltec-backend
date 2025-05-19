@@ -58,7 +58,7 @@ export const telRule = (tel: string): boolean => {
     const validCharacters: boolean = /^\d+$/.test(formatedTelString);
     const numberOfCharacters: boolean = limitCharacters(formatedTelString, 0, 12);
 
-    if (!validCharacters || numberOfCharacters) {
+    if (!validCharacters || !numberOfCharacters) {
         return false;
     }
     return true;
