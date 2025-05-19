@@ -6,6 +6,7 @@ import connectDatabase from './config/database';
 import userRoutes from './routes/userRoutes';
 import categoryRoutes from './routes/categoryRoutes';
 import subCategoryRoutes from './routes/subCategoryRoutes';
+import departmentRoutes from './routes/departmentRoutes';
 
 
 dotenv.config();
@@ -25,6 +26,7 @@ app.use(express.json());
 app.use('/api/users', userRoutes);
 app.use('/api/category', categoryRoutes);
 app.use('/api/subcategory', subCategoryRoutes);
+app.use('/api/department', departmentRoutes);
 
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);

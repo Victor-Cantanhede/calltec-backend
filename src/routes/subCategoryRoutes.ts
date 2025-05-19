@@ -11,6 +11,6 @@ const router = Router();
 // CRUD
 router.post('/', verifyToken, onlyAdmin, createSubCategory);
 router.get('/', verifyToken, getAllSubCategories);
-router.delete('/:id', verifyToken, deleteSubCategory);
+router.delete('/:id', verifyToken, onlyAdmin, deleteSubCategory);
 
 export default router;
