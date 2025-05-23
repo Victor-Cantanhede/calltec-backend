@@ -105,7 +105,7 @@ export const passwordRule = (password: string): boolean => {
 };
 ///////////////////////////////////////////////////////////////////////////
 
-// Verifica se já existe o mesmos dado no banco de usuários
+// Verifica se já existe os mesmos dados no banco de usuários
 export const existingUserData = async (field: string, value: string): Promise<boolean> => {
     try {
         const data = await User.findOne({ [field]: value });

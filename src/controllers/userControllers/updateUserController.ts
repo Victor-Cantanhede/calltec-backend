@@ -10,7 +10,7 @@ export const updateUserByAdmin = async (req: Request, res: Response): Promise<vo
         const userId = req.params.id;
         const { registration, name, department, tel, email, username, accesslevel, status } = req.body;
 
-        if (!registration || !name || !department || !tel || !email || !username || !accesslevel || !status) {
+        if (!userId || !registration || !name || !department || !tel || !email || !username || !accesslevel || !status) {
             res.status(400).json({ message: 'Todos os campos deve ser preenchidos para atualização!' });
             return;
         }
